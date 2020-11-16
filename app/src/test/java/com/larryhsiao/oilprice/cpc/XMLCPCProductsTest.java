@@ -40,11 +40,26 @@ class XMLCPCProductsTest {
      */
     @Test
     void priceShouldAvailable() {
-        for (Product product : new XMLCPCProducts(new CPCProducts()).value()) {
-            assertNotEquals(
-                0f,
-                product.price()
-            );
-        }
+        assertNotEquals(
+            0f,
+            new XMLCPCProducts(new CPCProducts())
+                .value()
+                .get(0)
+                .price()
+        );
+    }
+
+    /**
+     * Check the applied date is valid.
+     */
+    @Test
+    void appliedDate() {
+        assertNotEquals(
+            0f,
+            new XMLCPCProducts(new CPCProducts())
+                .value()
+                .get(0)
+                .priceApplyDate().getTimeInMillis()
+        );
     }
 }
